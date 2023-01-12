@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Window.h"
+#include "Pipeline.h"
 
 namespace MyEngine
 {
@@ -13,5 +14,6 @@ namespace MyEngine
 		static constexpr uint32_t HEIGHT = 600;
 	private:
 		Window window{ WIDTH, HEIGHT, "Vulkan" };
+		Pipeline pipeline{ "shaders/simple_vertex_shader.vert.spv", "shaders/simple_fragment_shader.frag.spv" };
 	};
 }
