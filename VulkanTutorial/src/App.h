@@ -2,6 +2,7 @@
 
 #include "Window.h"
 #include "Pipeline.h"
+#include "Device.h"
 
 namespace MyEngine
 {
@@ -14,6 +15,7 @@ namespace MyEngine
 		static constexpr uint32_t HEIGHT = 600;
 	private:
 		Window window{ WIDTH, HEIGHT, "Vulkan" };
-		Pipeline pipeline{ "shaders/simple_vertex_shader.vert.spv", "shaders/simple_fragment_shader.frag.spv" };
+		Device device{ window };
+		Pipeline pipeline{device, Pipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT), "shaders/simple_vertex_shader.vert.spv", "shaders/simple_fragment_shader.frag.spv" };
 	};
 }
