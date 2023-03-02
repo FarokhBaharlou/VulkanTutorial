@@ -33,6 +33,9 @@
     <ClCompile Include="src\Device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SwapChain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Window.h">
@@ -47,12 +50,15 @@
     <ClInclude Include="src\Device.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\SwapChain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\simple_vertex_shader.vert">
+    <None Include="shaders\simple_fragment_shader.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shaders\simple_fragment_shader.frag">
+    <None Include="shaders\simple_vertex_shader.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

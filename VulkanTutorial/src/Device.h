@@ -3,6 +3,7 @@
 #include "Window.h"
 #include <string>
 #include <vector>
+#include <optional>
 
 namespace MyEngine
 {
@@ -15,11 +16,9 @@ namespace MyEngine
 
     struct QueueFamilyIndices
     {
-        uint32_t graphicsFamily;
-        uint32_t presentFamily;
-        bool graphicsFamilyHasValue = false;
-        bool presentFamilyHasValue = false;
-        bool isComplete() { return graphicsFamilyHasValue && presentFamilyHasValue; }
+        std::optional<uint32_t> graphicsFamily;
+        std::optional<uint32_t> presentFamily;
+        bool isComplete() { return graphicsFamily.has_value() && presentFamily.has_value(); }
     };
 
     class Device
@@ -33,11 +32,11 @@ namespace MyEngine
 
         Device(Window& window);
         ~Device();
-
         Device(const Device&) = delete;
         void operator=(const Device&) = delete;
         Device(Device&&) = delete;
         Device& operator=(Device&&) = delete;
+
 
         VkCommandPool getCommandPool() { return commandPool; }
         VkDevice device() { return device_; }
