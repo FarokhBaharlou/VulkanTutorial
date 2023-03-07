@@ -6,6 +6,7 @@ namespace MyEngine
 {
 	App::App()
 	{
+		loadModels();
 		createPipelineLayout();
 		createPipeline();
 		createCommandBuffers();
@@ -23,6 +24,11 @@ namespace MyEngine
 		}
 		vkDeviceWaitIdle(device.device());
 	}
+	void App::loadModels()
+	{
+		std::vector<Model::Vertex> vertices{ {{0.0f, -0.5f}}, {{0.5f, 0.5f}}, {{-0.5f, 0.5f}} };
+		model = std::make_unique<Model>(device, vertices);
+	}
 	void App::createPipelineLayout()
 	{
 		VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
@@ -38,7 +44,8 @@ namespace MyEngine
 	}
 	void App::createPipeline()
 	{
-		auto pipelineConfig = Pipeline::defaultPipelineConfigInfo(swapChain.width(), swapChain.height());
+		PipelineConfigInfo pipelineConfig{};
+		Pipeline::defaultPipelineConfigInfo(pipelineConfig, swapChain.width(), swapChain.height());
 		pipelineConfig.renderPass = swapChain.getRenderPass();
 		pipelineConfig.pipelineLayout = pipelineLayout;
 		pipeline = std::make_unique<Pipeline>(device, pipelineConfig, "shaders/simple_vertex_shader.vert.spv", "shaders/simple_fragment_shader.frag.spv");
@@ -84,7 +91,8 @@ namespace MyEngine
 			vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
 			pipeline->bind(commandBuffers[i]);
-			vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+			model->bind(commandBuffers[i]);
+			model->draw(commandBuffers[i]);
 
 			vkCmdEndRenderPass(commandBuffers[i]);
 			if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS)

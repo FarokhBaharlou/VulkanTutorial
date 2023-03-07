@@ -4,6 +4,7 @@
 #include "Pipeline.h"
 #include "Device.h"
 #include "SwapChain.h"
+#include "Model.h"
 #include <memory>
 #include <vector>
 
@@ -18,6 +19,7 @@ namespace MyEngine
 		App& operator=(const App&) = delete;
 		void run();
 	private:
+		void loadModels();
 		void createPipelineLayout();
 		void createPipeline();
 		void createCommandBuffers();
@@ -32,5 +34,6 @@ namespace MyEngine
 		std::unique_ptr<Pipeline> pipeline;
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
+		std::unique_ptr<Model> model;
 	};
 }
