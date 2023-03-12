@@ -4,7 +4,7 @@
 #include "Pipeline.h"
 #include "Device.h"
 #include "SwapChain.h"
-#include "Model.h"
+#include "GameObject.h"
 #include <memory>
 #include <vector>
 
@@ -19,7 +19,7 @@ namespace MyEngine
 		App& operator=(const App&) = delete;
 		void run();
 	private:
-		void loadModels();
+		void loadGameObjects();
 		void createPipelineLayout();
 		void createPipeline();
 		void createCommandBuffers();
@@ -27,6 +27,7 @@ namespace MyEngine
 		void drawFrame();
 		void recreateSwapChain();
 		void recordCommandBuffer(int imageIndex);
+		void renderGameObjects(VkCommandBuffer commandBuffer);
 	public:
 		static constexpr uint32_t WIDTH = 800;
 		static constexpr uint32_t HEIGHT = 600;
@@ -37,6 +38,6 @@ namespace MyEngine
 		std::unique_ptr<Pipeline> pipeline;
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
-		std::unique_ptr<Model> model;
+		std::vector<GameObject> gameObjects;
 	};
 }
