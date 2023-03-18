@@ -3,6 +3,7 @@
 #include "Pipeline.h"
 #include "Device.h"
 #include "GameObject.h"
+#include "Camera.h"
 #include <memory>
 #include <vector>
 
@@ -15,7 +16,7 @@ namespace MyEngine
 		~RenderSystem();
 		RenderSystem(const RenderSystem&) = delete;
 		RenderSystem& operator=(const RenderSystem&) = delete;
-		void renderGameObjects(VkCommandBuffer commandBuffer, std::vector<GameObject>& gameObjects);
+		void renderGameObjects(VkCommandBuffer commandBuffer, std::vector<GameObject>& gameObjects, const Camera& camera);
 	private:
 		void createPipelineLayout();
 		void createPipeline(VkRenderPass renderPass);
