@@ -179,6 +179,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Descriptors.cpp" />
     <ClCompile Include="src\Buffer.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Controller.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Descriptors.h" />
     <ClInclude Include="src\FrameInfo.h" />
     <ClInclude Include="src\Buffer.h" />
     <ClInclude Include="src\Controller.h" />

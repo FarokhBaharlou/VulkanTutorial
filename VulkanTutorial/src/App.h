@@ -4,6 +4,7 @@
 #include "Device.h"
 #include "Renderer.h"
 #include "GameObject.h"
+#include "Descriptors.h"
 #include <memory>
 #include <vector>
 
@@ -26,6 +27,7 @@ namespace MyEngine
 		Window window{ WIDTH, HEIGHT, "Vulkan" };
 		Device device{ window };
 		Renderer renderer{ window, device };
+		std::unique_ptr<DescriptorPool> globalPool{};
 		std::vector<GameObject> gameObjects;
 	};
 }

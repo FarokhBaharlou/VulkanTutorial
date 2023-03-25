@@ -13,13 +13,13 @@ namespace MyEngine
 	class RenderSystem
 	{
 	public:
-		RenderSystem(Device& device, VkRenderPass renderPass);
+		RenderSystem(Device& device, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
 		~RenderSystem();
 		RenderSystem(const RenderSystem&) = delete;
 		RenderSystem& operator=(const RenderSystem&) = delete;
 		void renderGameObjects(FrameInfo& frameInfo, std::vector<GameObject>& gameObjects);
 	private:
-		void createPipelineLayout();
+		void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
 		void createPipeline(VkRenderPass renderPass);
 	private:
 		Device& device;
