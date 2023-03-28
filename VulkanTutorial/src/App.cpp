@@ -16,7 +16,9 @@ namespace MyEngine
 	struct GlobalUbo
 	{
 		alignas(16) glm::mat4 projectionView{ 1.f };
-		alignas(16) glm::vec3 lightDirection = glm::normalize(glm::vec3{ 1.f, -3.f, -1.f });
+		glm::vec4 ambientLightColor{ 1.f, 1.f, 1.f, .02f };
+		glm::vec3 lightPosition{ -1.f };
+		alignas(16) glm::vec4 lightColor{ 1.f };
 	};
 	App::App()
 	{
@@ -45,6 +47,7 @@ namespace MyEngine
         Camera camera{};
         camera.setViewTarget(glm::vec3(-1., -2.f, 2.f), glm::vec3(0.f, 0.f, 2.5f));
         auto viewerObject = GameObject::createGameObject();
+		viewerObject.transform.translation.z = -2.5f;
         Controller cameraController{};
         auto currentTime = std::chrono::high_resolution_clock::now();
 		while (!window.shouldClose())
@@ -79,15 +82,22 @@ namespace MyEngine
         std::shared_ptr<Model> model = Model::createModelFromFile(device, "models/flat_vase.obj");
         auto flatVase = GameObject::createGameObject();
 		flatVase.model = model;
-		flatVase.transform.translation = { -.5f, .5f, 2.5f };
+		flatVase.transform.translation = { -.5f, .5f, 0.f };
 		flatVase.transform.scale = { 3.f, 1.5f, 3.f };
         gameObjects.push_back(std::move(flatVase));
 
 		model = Model::createModelFromFile(device, "models/smooth_vase.obj");
 		auto smoothVase = GameObject::createGameObject();
 		smoothVase.model = model;
-		smoothVase.transform.translation = { .5f, .5f, 2.5f };
+		smoothVase.transform.translation = { .5f, .5f, 0.f };
 		smoothVase.transform.scale = { 3.f, 1.5f, 3.f };
 		gameObjects.push_back(std::move(smoothVase));
+
+		model = Model::createModelFromFile(device, "models/quad.obj");
+		auto floor = GameObject::createGameObject();
+		floor.model = model;
+		floor.transform.translation = { .0f, .5f, 0.f };
+		floor.transform.scale = { 3.f, 1.f, 3.f };
+		gameObjects.push_back(std::move(floor));
 	}
 }
