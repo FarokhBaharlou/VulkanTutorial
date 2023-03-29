@@ -2,6 +2,7 @@
 
 #include "Camera.h"
 #include <vulkan/vulkan.h>
+#include "GameObject.h"
 
 namespace MyEngine
 {
@@ -12,5 +13,6 @@ namespace MyEngine
 		VkCommandBuffer commandBuffer;
 		Camera& camera;
 		VkDescriptorSet globalDescriptorSet;
+		GameObject::Map& gameObjects;
 	};
 }

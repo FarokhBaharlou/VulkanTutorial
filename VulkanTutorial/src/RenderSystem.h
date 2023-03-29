@@ -17,7 +17,7 @@ namespace MyEngine
 		~RenderSystem();
 		RenderSystem(const RenderSystem&) = delete;
 		RenderSystem& operator=(const RenderSystem&) = delete;
-		void renderGameObjects(FrameInfo& frameInfo, std::vector<GameObject>& gameObjects);
+		void renderGameObjects(FrameInfo& frameInfo);
 	private:
 		void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
 		void createPipeline(VkRenderPass renderPass);

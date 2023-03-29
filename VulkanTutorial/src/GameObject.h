@@ -2,6 +2,7 @@
 
 #include "Model.h"
 #include <memory>
+#include <unordered_map>
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace MyEngine
@@ -18,6 +19,7 @@ namespace MyEngine
 	{
 	public:
 		using id_t = unsigned int;
+		using Map = std::unordered_map<id_t, GameObject>;
 	public:
 		GameObject(const GameObject&) = delete;
 		GameObject& operator=(const GameObject&) = delete;
